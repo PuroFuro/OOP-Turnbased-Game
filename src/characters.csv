@@ -1,0 +1,3 @@
+name, level, weapon, base_attack, base_defense, base_health, mana, description
+Kiko, 30, None, 600, 200, 600, 100,  "Kiko is a gray Dragon with supporting capabilities, Kiko can heal and buff allies' attack making him a solid and balanced character."
+Ampy, 50, None, 800, 150, 800, 100, "Ampy is a Purple Dragon with high damage output with a defense reducing skill, a fearful dragon at its finest."

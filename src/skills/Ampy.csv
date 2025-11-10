@@ -1,0 +1,4 @@
+owner, name, points, cost, description, level_req, isBuff, isDebuff, isHeal, single
+Ampy, "A Demon's Instinct", 2.5, 30, "Ampy taps into his demonic instincts, next attack will deal 2.5x damage", 1, True, False, False, True
+Ampy, "Immense Gaze", 25, 20, "A gaze that strikes primal fear, reducing their defense by 25% for 3 turns.", 1, False, True, False, True
+Ampy, "Hell Piercing Slash", 80, 40, "Ampy unleashes a powerful slash infused with demonic energy, dealing massive damage to a single target.", 1, False, False, False, True

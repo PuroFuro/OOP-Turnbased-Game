@@ -1,5 +1,6 @@
 import random
-from colorama import Fore, Style, init
+from Char import *
+from colorama import Fore, Style, init # type: ignore
 
 init(autoreset=True)
 
@@ -26,61 +27,6 @@ def colored_defense(value):
 
 def colored_status_effect(name):
     return f"{Fore.YELLOW}{name}{Style.RESET_ALL}"
-
-class Characters:
-    def __init__(self, name, base_attack, base_defense, base_health, mana, skills, description):
-        self.name = name
-        self.base_attack = base_attack
-        self.base_defense = base_defense
-        self.base_health = base_health
-        self.health = base_health
-        self.attack = base_attack
-        self.defense = base_defense
-        self.mana = mana
-        self.skills = skills
-        self.description = description
-        self.status = {} #  python dictionary with : to store turns
-        self.defending = False
-        self.charged = 1
-
-class Skill:
-    def __init__(self, name, points, cost, description, isBuff, isDebuff, isHeal, single):
-        self.name = name
-        self.points = points
-        self.cost = cost
-        self.description = description
-        self.isBuff = isBuff
-        self.isDebuff = isDebuff
-        self.isHeal = isHeal
-        self.single = single
-
-class Kiko(Characters):
-    def __init__(self):
-        skills = [
-            Skill("Sharp Triangle", 30, 10, "Summons a sharp triangles that deal small damage to the enemy.", False, False, False, True),
-            Skill("You can do it!", 25, 10, "A playful cheering for everyone, Increases all allies' attack by 25% for 3 turns.", True, False, False, False),
-            Skill("Kiko's Blessing", 20, 20, "Heals all allies for 20% of their maximum health.", False, False, True, False),
-        ]
-        super().__init__("Kiko", 30, 20, 600, 200, skills, "A gray Dragon with supporting capabilities, Kiko can heal and buff allies' attack making him a solid and balanced character.")
-
-class Ampy(Characters):
-    def __init__(self):
-        skills = [
-            Skill("Eternal Focus", 2.5, 30, "Uses magic to remove unnecessary thoughts, next attack will deal 2.5x damage. (Only works on Ampy, will be redirected if used on other party)", True, False, False, True),
-            Skill("Stare", 25, 20, "Ampy stares at the enemy horrifyingly, reducing their defense by 25% for 3 turns.", False, True, False, True),
-            Skill("Demonic Slash", 100, 30, "Ampy uses his demonic power to slash the enemy, deals high amount of damage to the enemy", False, False, False, True),
-        ]
-        super().__init__("Ampy", 50, 15, 800, 150, skills, "Ampy is a Purple Dragon with high damage output with a defense reducing skill, a fearful dragon at its finest.")
-
-class Enemy(Characters):
-    def __init__(self):
-        health = 10000 #random.randint(500, 1000)
-        attack = random.randint(50, 150)
-        defense = random.randint(10, 20)
-        skills = [
-            Skill("Normal Attack", random.randint(10, 30), 0, "A basic attack that deals moderate damage.", False, False, False, True),
-        ]
-        super().__init__("Enemy", attack, defense, health, "an ordinary enemy", skills, "A random enemy with varying stats and a basic attack skill.")
 
 class Battle:
     def __init__(self, party, enemy):
@@ -327,5 +273,35 @@ class Battle:
                         if not self.party:
                             print("All party members have been defeated. Game over.")
                             return
+chosen_char = []
+char_dict = {}
 
-Battle([Kiko(), Ampy()], Enemy()).game_loop()
+with open(f'characters.csv', mode='r') as char_file:
+    chars = csv.reader(char_file, skipinitialspace=True)
+    i = 97
+    next(chars)
+    for char_name in chars:
+        char_dict.update({chr(i): char_name[0]})
+        i += 1
+
+def char_pick(option):
+    char_name = char_dict.get(option)
+    init_char(char_name, 1)
+    confirm = input("Do you want to pick this character?  (Yes/No)\n")
+    if confirm == "yes" or confirm == 'Yes':
+        if char_name in chosen_char:
+            print("You already chose this character!\n")
+        else:
+            chosen_char.append(char_name)
+    else:
+        pass
+    
+while True:
+    print(f"Current chosen characters: {', '.join(chosen_char)}")
+    print("Choose your characters:")
+    for key, value in char_dict.items():
+        print(f'({key}) {value}')
+    choice = input()
+    char_pick(choice)
+        
+Battle([init_char("Kiko"), init_char("Ampy")], Enemy()).game_loop()
