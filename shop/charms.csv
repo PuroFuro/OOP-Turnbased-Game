@@ -1,0 +1,8 @@
+name, type, cost, description, points, usage
+"Knowledge Book", "charm", 30, "An ordinary book about magic, on the front there's a writing of a long overdue return date.", 10, "Increases the wearer's magic by 10%"
+"Coffee Producing Bottle", "charm", 100, "A not so ordinary bottle that keeps producing coffee with no sugar whenever it's not full.", 25, "Permanently applies 'Energized' buff that increases the wearer's speed by 25%"
+"Dusty armor", "armor", 10, "Who the hell wants to buy this junk?", 1, "Increases defense by 1"
+"Chest Chestplate", "armor", 30, "Chestplate made out of chests.. I'm a loot I guess", 10, "Increases defense by 10"
+"Plate Chestplate", "armor", 20, "Chestplate made out of plates.. Does it even protect well?", 5, "Increases defense by 5"
+"Coffee", "item", 2, "A cup of no sugar coffee.", 25, "Applies 'Energized' buff that increases the wearer's speed by 25%"
+"Yuck Burger", "item", 3, "A burger with.. nothing but pickles? Yuck.", 200, "Heals a single party member for 200 HP"

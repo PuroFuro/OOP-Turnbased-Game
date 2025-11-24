@@ -270,6 +270,34 @@ class Battle:
                         if not self.party:
                             print("All party members have been defeated. Game over.")
                             return
+def shop():
+    pass
+
+def Char_info():
+    pass
+
+def explore():
+    pass
+
+def online():
+    pass
+
+def idle():
+    while True:
+        choice = input("What do you wanna do?\n(a) Go to shop\n(b) Characters\n(c) Fight Enemies\n(d) Explore the Cities\n(e) Online Section\n==> ")
+        if choice == 'a':
+            shop()
+        elif choice == 'b':
+            Char_info()
+        elif choice == 'c':
+            Battle()
+        elif choice == 'd':
+            explore()
+        elif choice == 'e':
+            online()
+        else:
+            print("Please choose correctly.\n")
+    
 chosen_char = ["Kiko", "Ampy"]
 char_dict = {}
 

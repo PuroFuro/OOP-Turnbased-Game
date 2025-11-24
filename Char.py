@@ -2,13 +2,15 @@ import random
 import csv
 
 class Characters:
-    def __init__(self, name, level, weapon, base_attack, base_defense, base_health, mana, description, skills):
+    def __init__(self, name, level, weapon, base_attack, base_defense, base_health, base_speed, base_magic, mana, description, skills):
         self.name = name
         self.level = level
         self.weapon = weapon
         self.base_attack = base_attack
         self.base_defense = base_defense
         self.base_health = base_health
+        self.base_speed = base_speed
+        self.base_magic = base_magic
         self.health = base_health
         self.attack = base_attack
         self.defense = base_defense
@@ -64,7 +66,9 @@ class Enemy(Characters):
         health = 10000 #random.randint(500, 1000)
         attack = random.randint(50, 150)
         defense = random.randint(10, 20)
+        magic = random.randint(10, 20)
+        speed = random.randint(10, 20)
         skills = [
             Skill("Normal Attack", random.randint(10, 30), 0, "A basic attack that deals moderate damage.", 1, False, False, False, True),
         ]
-        super().__init__("Enemy", "1", "None", attack, defense, health, "an ordinary enemy", "A random enemy with varying stats and a basic attack skill.", skills)
+        super().__init__("Enemy", "1", "None", attack, defense, health, speed, magic, "an ordinary enemy", "A random enemy with varying stats and a basic attack skill.", skills)
