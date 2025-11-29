@@ -1,5 +1,5 @@
 name, level, weapon, base_attack, base_defense, base_health, base_speed, base_magic, mana, description
 Kiko, 1, None, 10, 20, 6000, 120, 200, 100,  "Kiko is a gray Dragon with supporting capabilities, Kiko can heal and buff allies' attack making him a solid and balanced character."
 Ampy, 1, None, 20, 15, 4000, 100, 100, 200, "Ampy is a Purple Dragon with high damage output with a defense reducing skill, a fearful dragon at its finest."
-Chloe, 1, None, 15, 20, 6000, 80, 150, 60,  "Chloe is a menacing human that specializes in bleeding the enemy, I'd suggest to stay away from her if you don't want to get bitten."
-Nell, 1, None, 10, 25, 8000, 90, 300, 300, "Nell is a shielder that swore to protect all of his allies, taking hits with reduced damage is his specialty."
+Chloe (WIP), 1, None, 15, 20, 6000, 80, 150, 60,  "Chloe is a menacing human that specializes in bleeding the enemy, I'd suggest to stay away from her if you don't want to get bitten."
+Nell (WIP), 1, None, 10, 25, 8000, 90, 300, 300, "Nell is a shielder that swore to protect all of his allies, taking hits with reduced damage is his specialty."

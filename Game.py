@@ -42,11 +42,12 @@ class Battle:
     def update_status(self, count_add):
         # Update enemy status
         for status_name, key in list(self.enemy.status.items()):
-            if key[0] == "infinite":
+            if key == "infinite":
+                print("infinite anjay")
                 continue
-            if key[0] > 0:
+            if key > 0:
                 self.enemy.status[status_name] -= 1
-            elif key[0] <= 0:
+            elif key <= 0:
                 del self.enemy.status[status_name]
                 print(f"{self.enemy.name}'s {status_name} has worn off.")
                 if status_name == "Immense Gaze":
@@ -84,9 +85,6 @@ class Battle:
             heal_amount = round(character.health * 0.2)
             character.health += heal_amount
             print(f"{colored_name(character.name)} healed for {colored_health(heal_amount)} health.")
-        
-        elif status_name == "Like this?":
-            print("")
             
         # Ampy's buffs/debuffs
         elif status_name == "A Demon's Instinct":
@@ -271,6 +269,7 @@ class Battle:
                     else:
                         print("Invalid action. Please choose again.")
                         continue
+                    
                     if self.enemy.health <= 0:
                         print(f"{colored_name(self.enemy.name)} has been defeated!")
                         return
