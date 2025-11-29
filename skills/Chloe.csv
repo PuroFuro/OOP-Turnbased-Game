@@ -1,0 +1,4 @@
+owner, name, points, cost, description, level_req, isBuff, isDebuff, isHeal, single
+Chloe, "I'm angry now", 10, 10, "Just Chloe being Chloe, she becomes angry all of a sudden, increases her attack by 20% for 3 turns while reducing 10% of her max health", 1, True, False, False, True
+Chloe, "Shoulder bite", 200, 15, "Chloe bites the enemy SPECIFICALLY on the shoulder for some reason, inflicts Bleed! effect that can stack up to 5 times for 3 turns.", 1, False, True, False, True
+Chloe, "Scritch Scratch", 50, 20, "Chloe scratches the enemy with her surprisingly not fragile nails, dealing low damage 2-4x with each attack inflicting bleed.", 1, False, False, True, False

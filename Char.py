@@ -57,15 +57,16 @@ def init_char(names, info):
                     for skill in skills:
                         print('  ' + '- ' + ', '.join(map(str,skill)))
                 elif name == char_info[0] and not info:
-                    chars.append(Characters(char_info[0], int(char_info[1]), char_info[2], int(char_info[3]), int(char_info[4]), int(char_info[5]), int(char_info[6]), char_info[7], skills[:]))
+                    chars.append(Characters(char_info[0], int(char_info[1]), char_info[2], int(char_info[3]), int(char_info[4]), int(char_info[5]), int(char_info[6]), int(char_info[7]), int(char_info[8]), char_info[9], skills[:]))
         del skills[:]
     return chars
-                
+
+# basic enemy for testing
 class Enemy(Characters):
     def __init__(self):
         health = 10000 #random.randint(500, 1000)
         attack = random.randint(50, 150)
-        defense = random.randint(10, 20)
+        defense = random.randint(5, 10)
         magic = random.randint(10, 20)
         speed = random.randint(10, 20)
         skills = [

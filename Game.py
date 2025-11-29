@@ -39,14 +39,14 @@ class Battle:
             return True
         return False
 
-    def update_status(self):
+    def update_status(self, count_add):
         # Update enemy status
-        for status_name, turns in list(self.enemy.status.items()):
-            if turns == "infinite":
+        for status_name, key in list(self.enemy.status.items()):
+            if key[0] == "infinite":
                 continue
-            if turns > 0:
+            if key[0] > 0:
                 self.enemy.status[status_name] -= 1
-            elif turns <= 0:
+            elif key[0] <= 0:
                 del self.enemy.status[status_name]
                 print(f"{self.enemy.name}'s {status_name} has worn off.")
                 if status_name == "Immense Gaze":
@@ -84,7 +84,10 @@ class Battle:
             heal_amount = round(character.health * 0.2)
             character.health += heal_amount
             print(f"{colored_name(character.name)} healed for {colored_health(heal_amount)} health.")
-
+        
+        elif status_name == "Like this?":
+            print("")
+            
         # Ampy's buffs/debuffs
         elif status_name == "A Demon's Instinct":
             if not self.buff_check(character, status_name):
@@ -104,8 +107,28 @@ class Battle:
             else:
                 character.defense *= 0.75
                 print(f"{colored_name(character.name)}'s defense reduced by 25% for 3 turns.")
-                character.status[status_name] = 3
-
+            character.status[status_name] = 3
+        
+        # Chloe's buffs/debuffs
+        elif status_name == "I'm angry now":
+            if self.buff_check(character, status_name):
+                print(f"{colored_name(character.name)}'s attack buff is renewed.")
+            elif character.name == "Chloe":
+                print(f"{colored_name(character.name)} becomes angry!.")
+            else:
+                print(f"Chloe looks at {colored_name(character.name)} and becomes angry for some reason!.")
+            character.attack *= 1.20
+            character.health *= 0.90
+            character.status[status_name] = 3
+        
+        elif status_name == "Bleed":
+            if self.buff_check(character, status_name):
+                print(f"{colored_name(character.name)} is bleeding.")
+            else:
+                print(f"{colored_name(character.name)} is bleeding even more.")
+            character.status[status_name] = 3
+            
+    # rework the logic later
     def perform_skill(self, character, skill_num, enemy):
         skill = character.skills[skill_num]
         print(skill.isHeal)
@@ -164,7 +187,7 @@ class Battle:
 
     def game_loop(self):
         while self.enemy.health > 0:
-            self.update_status()
+            self.update_status(0)
             # Player's turn
             for character in self.party:
                 if character.health <= 0:
@@ -270,71 +293,72 @@ class Battle:
                         if not self.party:
                             print("All party members have been defeated. Game over.")
                             return
-def shop():
-    pass
+### still work in progress
+# def shop():
+#     pass
 
-def Char_info():
-    pass
+# def Char_info():
+#     pass
 
-def explore():
-    pass
+# def explore():
+#     pass
 
-def online():
-    pass
+# def online():
+#     pass
 
-def idle():
-    while True:
-        choice = input("What do you wanna do?\n(a) Go to shop\n(b) Characters\n(c) Fight Enemies\n(d) Explore the Cities\n(e) Online Section\n==> ")
-        if choice == 'a':
-            shop()
-        elif choice == 'b':
-            Char_info()
-        elif choice == 'c':
-            Battle()
-        elif choice == 'd':
-            explore()
-        elif choice == 'e':
-            online()
-        else:
-            print("Please choose correctly.\n")
+# def idle():
+#     while True:
+#         choice = input("What do you wanna do?\n(a) Go to shop\n(b) Characters\n(c) Fight Enemies\n(d) Explore the Cities\n(e) Online Section\n==> ")
+#         if choice == 'a':
+#             shop()
+#         elif choice == 'b':
+#             Char_info()
+#         elif choice == 'c':
+#             Battle()
+#         elif choice == 'd':
+#             explore()
+#         elif choice == 'e':
+#             online()
+#         else:
+#             print("Please choose correctly.\n")
     
-chosen_char = ["Kiko", "Ampy"]
+chosen_char = []
 char_dict = {}
 
-# with open(f'characters.csv', mode='r') as char_file:
-#     chars = csv.reader(char_file, skipinitialspace=True)
-#     i = 97
-#     next(chars)
-#     for char_name in chars:
-#         char_dict.update({chr(i): char_name[0]})
-#         i += 1
+with open(f'characters.csv', mode='r') as char_file:
+    chars = csv.reader(char_file, skipinitialspace=True)
+    i = 97
+    next(chars)
+    for char_name in chars:
+        char_dict.update({chr(i): char_name[0]})
+        i += 1
 
-# def char_pick(option):
-#     char_name = char_dict.get(option)
-#     if char_name == None:
-#         print("Please choose correctly\n")
-#         return
+def char_pick(option):
+    char_name = char_dict.get(option)
+    if char_name == None:
+        print("Please choose correctly\n")
+        return
     
-#     init_char([char_name], 1)
-#     confirm = input("Do you want to pick this character?  (Yes/No)\n")
-#     if confirm == "yes" or confirm == 'Yes':
-#         if char_name in chosen_char:
-#             print("You already chose this character!\n")
-#         else:
-#             chosen_char.append(char_name)
-#     else:
-#         pass
-    
-# while True:
-#     print(f"Current chosen characters: {', '.join(chosen_char)}")
-#     print("Choose your characters (type 'done' if finished choosing):")
-#     for key, value in char_dict.items():
-#         print(f'({key}) {value}')
-#     choice = input()
-#     if choice == 'done' and chosen_char:
-#         break
-#     else:
-#         print("You haven't chosen any character\n")
-#     char_pick(choice)
-        
+    init_char([char_name], 1)
+    confirm = input("Do you want to pick this character?  (Yes/No)\n")
+    if confirm == "yes" or confirm == 'Yes':
+        if char_name in chosen_char:
+            print("You already chose this character!\n")
+        else:
+            chosen_char.append(char_name)
+    else:
+        pass
+
+while True:
+    print(f"Current chosen characters: {', '.join(chosen_char)}")
+    print("Choose your characters (type 'done' if finished choosing):")
+    for key, value in char_dict.items():
+        print(f'({key}) {value}')
+    choice = input()
+    if choice == 'done' and chosen_char:
+        break
+    else:
+        print("You haven't chosen any character\n")
+    char_pick(choice)
+
 Battle([*init_char([*chosen_char], 0)], Enemy()).game_loop()

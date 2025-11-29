@@ -1,0 +1,4 @@
+owner, name, points, cost, description, level_req, isBuff, isDebuff, isHeal, single
+Nell, "Strategical Prediction", 20, 40, "Nell analyzes the enemies, allowing him to have a 20% chance to dodge incoming attacks.", 1, True, False, False, True
+Nell, "Planned Distraction", 0, 30, "Nell distracts the enemies, giving them the Taunted! Debuff.", 1, False, True, False, False
+Nell, "The Awaited Opening", 100, 25, "Every attack will have a small opening and Nell strategically exploits it, Applies Counter! Buff, allowing the user to hit back when attacked.", 1, True, False, False, True
